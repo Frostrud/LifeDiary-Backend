@@ -1,4 +1,4 @@
-package com.LifeDiarybackend.model;
+package com.LifeDiarybackend.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
