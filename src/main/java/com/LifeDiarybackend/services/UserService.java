@@ -15,7 +15,7 @@ public class UserService {
     @Transactional
     public String addUser(User user) {
         try {
-            if(repository.findByUsername(String.valueOf(user.getUsername().isEmpty()))) {
+            if(!repository.existsByUsername(user.getUsername())) {
                 repository.save(user);
                 return "User Created";
 
