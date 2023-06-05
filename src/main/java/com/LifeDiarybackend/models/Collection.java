@@ -10,10 +10,15 @@ import java.util.Set;
 @Table(name = "Collections")
 public class Collection {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
     private User user;
+
+
+
+    private String collectionName;
 
 
 
@@ -23,9 +28,10 @@ public class Collection {
     public Collection() {
     }
 
-    public Collection(User user) {
+    public Collection(User user, String name) {
         this.user = user;
         this.texts = new HashSet<Text>();
+        this.collectionName = name;
     }
 
     public void setId(Long id) {
@@ -42,5 +48,13 @@ public class Collection {
 
     public void addText(Text text) {
         this.texts.add(text);
+    }
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
     }
 }
