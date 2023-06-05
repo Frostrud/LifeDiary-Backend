@@ -2,7 +2,6 @@ package com.LifeDiarybackend.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +13,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    private String username;
+    private String firstName;
+    private String lastName;
+    private String membership;
+    private String email;
     private String password;
 
 
@@ -27,8 +29,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String Password) {
-        this.username = username;
+    public User(String firstName, String lastName, String membership, String email, String Password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.membership = membership;
+        this.email = email;
         this.password = password;
         this.collections = new HashSet<>();
     }
@@ -41,8 +46,8 @@ public class User {
         this.collections.add(collection);
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
@@ -53,12 +58,24 @@ public class User {
         return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMembership() {
+        return membership;
     }
 }
 

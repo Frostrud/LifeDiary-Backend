@@ -13,14 +13,14 @@ public class UserService {
     private UserRepository repository;
 
     @Transactional
-    public String addUser(User user) {
+    public boolean addUser(User user) {
         try {
-            if(!repository.existsByUsername(user.getUsername())) {
+            if(!repository.existsByEmail(user.getEmail())) {
                 repository.save(user);
-                return "User Created";
+                return true;
 
             } else {
-                return "User already exists";
+                return false;
             }
         } catch (Exception e) {
             throw e;
@@ -29,5 +29,13 @@ public class UserService {
 
     public Iterable<User> readUsers() {
         return repository.findAll();
+    }
+
+    public User findUserByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    public boolean existsUserByEmail(String email) {
+        return repository.existsUserByEmail(email);
     }
 }

@@ -20,9 +20,7 @@ public class CollectionController {
 
     @PostMapping("/api/collections/add")
     public ResponseEntity<Boolean> addCollection(@RequestBody String name) {
-        User testUser = new User("test123", "test123");
-        userService.addUser(testUser);
-        Collection collectionToBeAdded = new Collection(testUser, name);
+        Collection collectionToBeAdded = new Collection(userService.findUserByEmail("admin@test.com"), name);
         if(service.addCollection(collectionToBeAdded).equalsIgnoreCase("Collection added")) {
             return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
         }

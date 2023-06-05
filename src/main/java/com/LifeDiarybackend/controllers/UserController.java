@@ -15,29 +15,26 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/api/login")
-    public ResponseEntity<Boolean> doLogin(@RequestBody User user) {
+    public ResponseEntity<String> doLogin(@RequestBody User user) {
         for(User userFound : userService.readUsers()) {
-            if(userFound.getUsername().equalsIgnoreCase(user.getUsername())) {
-                return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
+            if(userFound.getEmail().equalsIgnoreCase(user.getEmail())) {
+                return new ResponseEntity<String>("User successfully logged in", HttpStatus.ACCEPTED);
             }
 
         }
 
-        return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<String>("Email or password is wrong", HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/api/signup")
-    public ResponseEntity<Boolean> createUser(@RequestBody User user) {
-        User userToBeAdded = new User(user.getUsername(), user.getPassword());
-        for(User userFound : userService.readUsers()) {
-            if(!userFound.getUsername().equalsIgnoreCase(user.getUsername())) {
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        User userToBeAdded = new User(user.getFirstName(), user.getLastName(), user.getMembership(),user.getEmail(), user.getPassword());
+            if(!userService.existsUserByEmail(user.getEmail())) {
                 userService.addUser(userToBeAdded);
-                return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
+                return new ResponseEntity<String>("User successfully added", HttpStatus.ACCEPTED);
             }
 
-        }
-
-        return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<String>("Email is already in use", HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("/api/getUsers")

@@ -20,7 +20,7 @@ public class DatabaseLoader {
 
     @PostConstruct
     private void loadData() {
-        User user = new User("admin@test.com", "admin123");
+        User user = new User("Mr","Admin","Premium+","admin@test.com", "admin123");
         userRepository.save(user);
     }
 }
