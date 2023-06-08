@@ -22,14 +22,14 @@ public class CollectionController {
     public ResponseEntity<Boolean> addCollection(@RequestBody String name) {
         Collection collectionToBeAdded = new Collection(userService.findUserByEmail("admin@test.com"), name);
         if(service.addCollection(collectionToBeAdded).equalsIgnoreCase("Collection added")) {
-            return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(true, HttpStatus.OK);
         }
         return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("/api/collections/getCollections")
     public ResponseEntity<Iterable<Collection>> getCollections() {
-        return new ResponseEntity<Iterable<Collection>>(service.readCollections(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<Iterable<Collection>>(service.readCollections(), HttpStatus.OK);
     }
 
 }

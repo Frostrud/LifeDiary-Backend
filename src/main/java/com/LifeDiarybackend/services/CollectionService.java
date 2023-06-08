@@ -1,6 +1,7 @@
 package com.LifeDiarybackend.services;
 
 import com.LifeDiarybackend.models.Collection;
+import com.LifeDiarybackend.models.User;
 import com.LifeDiarybackend.repositories.CollectionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class CollectionService {
 
     public Iterable<Collection> readCollections() {
         return repository.findAll();
+    }
+
+    public Collection findCollectionByUser(User user) {
+        return repository.findCollectionByUser(user);
     }
 }

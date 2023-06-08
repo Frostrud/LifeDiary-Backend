@@ -18,7 +18,7 @@ public class UserController {
     public ResponseEntity<String> doLogin(@RequestBody User user) {
         for(User userFound : userService.readUsers()) {
             if(userFound.getEmail().equalsIgnoreCase(user.getEmail())) {
-                return new ResponseEntity<String>("User successfully logged in", HttpStatus.ACCEPTED);
+                return new ResponseEntity<String>("User successfully logged in", HttpStatus.OK);
             }
 
         }
@@ -31,7 +31,7 @@ public class UserController {
         User userToBeAdded = new User(user.getFirstName(), user.getLastName(), user.getMembership(),user.getEmail(), user.getPassword());
             if(!userService.existsUserByEmail(user.getEmail())) {
                 userService.addUser(userToBeAdded);
-                return new ResponseEntity<String>("User successfully added", HttpStatus.ACCEPTED);
+                return new ResponseEntity<String>("User successfully added", HttpStatus.OK);
             }
 
         return new ResponseEntity<String>("Email is already in use", HttpStatus.FORBIDDEN);
@@ -39,6 +39,12 @@ public class UserController {
 
     @GetMapping("/api/getUsers")
     public ResponseEntity<Iterable<User>> getUsers() {
-        return new ResponseEntity<Iterable<User>>(userService.readUsers(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<Iterable<User>>(userService.readUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/getID")
+    public ResponseEntity<Integer> getId(@RequestBody String email) {
+        System.out.println(email);
+        return new ResponseEntity<Integer>(Math.toIntExact(userService.findUserByEmail(email).getUserId()), HttpStatus.OK);
     }
 }

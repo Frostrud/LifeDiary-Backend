@@ -38,4 +38,8 @@ public class UserService {
     public boolean existsUserByEmail(String email) {
         return repository.existsUserByEmail(email);
     }
+
+    public User findUserByUserId(long id) {
+        return repository.findByUserId(id);
+    }
 }
