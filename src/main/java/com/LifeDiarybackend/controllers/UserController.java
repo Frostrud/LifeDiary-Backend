@@ -42,9 +42,9 @@ public class UserController {
         return new ResponseEntity<Iterable<User>>(userService.readUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/getID")
-    public ResponseEntity<Integer> getId(@RequestBody String email) {
-        System.out.println(email);
+    //TODO change later when cookies are enabled, not secure way of retrieving.
+    @GetMapping("/api/getID/{email}")
+    public ResponseEntity<Integer> getId(@PathVariable String email) {
         return new ResponseEntity<Integer>(Math.toIntExact(userService.findUserByEmail(email).getUserId()), HttpStatus.OK);
     }
 }

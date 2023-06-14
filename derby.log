@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Thu Jun 08 13:20:17 CEST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0188-9abc-623d-000001c865f8 
-on database directory memory:C:\Users\saron\Desktop\LifeDiary\Backend\myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4b1210ee 
+Wed Jun 14 02:44:13 CEST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0188-b75c-333a-000003201268 
+on database directory memory:C:\Users\saron\Desktop\Side-hoes\lifediary-backend\myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4d7e1886 
 Loaded from file:/C:/Users/saron/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=18.0.2+9-61
-user.dir=C:\Users\saron\Desktop\LifeDiary\Backend
+java.runtime.version=19.0.2+7-44
+user.dir=C:\Users\saron\Desktop\Side-hoes\lifediary-backend
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

@@ -32,4 +32,11 @@ public class CollectionController {
         return new ResponseEntity<Iterable<Collection>>(service.readCollections(), HttpStatus.OK);
     }
 
+    @GetMapping("/api/collections/getCollectionsByUser={userID}")
+    public ResponseEntity<Iterable<Collection>> getCollectionsByUserID(@PathVariable long userID){ {
+        return new ResponseEntity<Iterable<Collection>>(service.getUserCollections(userID), HttpStatus.OK);
+    }
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.LifeDiarybackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ public class Collection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+
+    @JsonIgnore
     @ManyToOne
     private User user;
 
@@ -56,5 +60,9 @@ public class Collection {
 
     public void setCollectionName(String collectionName) {
         this.collectionName = collectionName;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
