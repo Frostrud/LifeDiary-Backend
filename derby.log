@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Jun 14 02:44:13 CEST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0188-b75c-333a-000003201268 
+Fri Jun 16 23:12:29 CEST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0188-c60d-701a-00000323c2b8 
 on database directory memory:C:\Users\saron\Desktop\Side-hoes\lifediary-backend\myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4d7e1886 
 Loaded from file:/C:/Users/saron/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
 java.vendor=Oracle Corporation

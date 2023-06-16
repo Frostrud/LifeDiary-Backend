@@ -19,8 +19,10 @@ public class CollectionController {
     private UserService userService;
 
     @PostMapping("/api/collections/add")
-    public ResponseEntity<Boolean> addCollection(@RequestBody String name) {
-        Collection collectionToBeAdded = new Collection(userService.findUserByEmail("admin@test.com"), name);
+    public ResponseEntity<Boolean> addCollection(@RequestBody CollectionRequest request) {
+
+        System.out.println(request.id());
+        Collection collectionToBeAdded = new Collection(userService.findUserByUserId(request.id()), request.name());
         if(service.addCollection(collectionToBeAdded).equalsIgnoreCase("Collection added")) {
             return new ResponseEntity<>(true, HttpStatus.OK);
         }
