@@ -43,4 +43,8 @@ public class CollectionService {
     public Collection findCollectionByUser(User user) {
         return repository.findCollectionByUser(user);
     }
+
+    public Collection findCollectionById(long Id) {
+       return repository.findCollectionById(Id);
+    }
 }

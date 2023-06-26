@@ -8,4 +8,6 @@ public interface CollectionRepository extends CrudRepository<Collection, String>
   Collection findCollectionByUser(User user);
 
   Iterable<Collection> findAll();
+
+  Collection findCollectionById(long Id);
 }

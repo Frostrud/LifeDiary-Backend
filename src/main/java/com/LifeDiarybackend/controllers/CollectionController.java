@@ -1,6 +1,6 @@
 package com.LifeDiarybackend.controllers;
 import com.LifeDiarybackend.models.Collection;
-import com.LifeDiarybackend.models.User;
+import com.LifeDiarybackend.models.CollectionRequest;
 import com.LifeDiarybackend.services.CollectionService;
 import com.LifeDiarybackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,6 @@ public class CollectionController {
 
     @PostMapping("/api/collections/add")
     public ResponseEntity<Boolean> addCollection(@RequestBody CollectionRequest request) {
-
-        System.out.println(request.id());
         Collection collectionToBeAdded = new Collection(userService.findUserByUserId(request.id()), request.name());
         if(service.addCollection(collectionToBeAdded).equalsIgnoreCase("Collection added")) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -35,10 +33,12 @@ public class CollectionController {
     }
 
     @GetMapping("/api/collections/getCollectionsByUser={userID}")
-    public ResponseEntity<Iterable<Collection>> getCollectionsByUserID(@PathVariable long userID){ {
+    public ResponseEntity<Iterable<Collection>> getCollectionsByUserID(@PathVariable long userID) {
         return new ResponseEntity<Iterable<Collection>>(service.getUserCollections(userID), HttpStatus.OK);
     }
 
+    @GetMapping("/api/collections/getSingleCollectionByCollectionID={collectionId}")
+    public ResponseEntity<Collection> getCollectionByCollectionId(@PathVariable long collectionId) {
+        return new ResponseEntity<Collection>(service.findCollectionById(collectionId), HttpStatus.OK);
     }
-
 }
