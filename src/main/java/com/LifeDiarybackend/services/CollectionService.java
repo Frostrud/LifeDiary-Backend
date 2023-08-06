@@ -44,6 +44,7 @@ public class CollectionService {
         return repository.findCollectionByUser(user);
     }
 
+    @Transactional
     public Collection findCollectionById(long Id) {
        return repository.findCollectionById(Id);
     }

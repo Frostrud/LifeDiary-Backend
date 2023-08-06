@@ -14,19 +14,14 @@ public class Collection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-
     @JsonIgnore
     @ManyToOne
     private User user;
 
-
-
     private String collectionName;
 
 
-
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Text> texts;
 
     public Collection() {
