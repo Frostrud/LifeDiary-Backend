@@ -1,7 +1,8 @@
 package com.LifeDiarybackend.controllers;
 
-import com.LifeDiarybackend.models.Collection;
 import com.LifeDiarybackend.models.Text;
+import com.LifeDiarybackend.models.TextRequest;
+import com.LifeDiarybackend.services.CollectionService;
 import com.LifeDiarybackend.services.TextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,20 @@ public class TextController {
 
   @Autowired
   private TextService service;
+  @Autowired
+  private CollectionService collectionService;
 
 
   @GetMapping("/api/texts/getSingleTextByTextID={textID}")
   public ResponseEntity<Text> getCollectionByCollectionId(@PathVariable long textID) {
     return new ResponseEntity<Text>(service.findTextByTextID(textID), HttpStatus.OK);
+  }
+
+  @PostMapping("/api/texts/add")
+  public ResponseEntity<Boolean> addNewText(@RequestBody TextRequest request) {
+    if(service.addNewText(collectionService.findCollectionById(request.id()), request.name())) {
+      return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+    }
+    return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
   }
 }

@@ -1,5 +1,6 @@
 package com.LifeDiarybackend.services;
 
+import com.LifeDiarybackend.models.Collection;
 import com.LifeDiarybackend.models.Text;
 import com.LifeDiarybackend.repositories.TextRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +14,16 @@ public class TextService {
 
   public Text findTextByTextID(Long textID) {
     return repository.findTextById(textID);
+  }
+
+  public boolean addNewText(Collection collection, String textHeadline) {
+   try {
+     Text newText = new Text(collection, textHeadline, "");
+     collection.addText(newText);
+     repository.save(newText);
+     return true;
+   } catch(Exception e) {
+     throw e;
+    }
   }
 }
