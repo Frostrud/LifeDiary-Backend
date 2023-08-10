@@ -60,4 +60,15 @@ public class CollectionService {
         }
         return false;
     }
+
+    @Transactional
+    public boolean editCollectionById(long Id, String name) {
+        Collection collectionToBeEdited = findCollectionById(Id);
+        collectionToBeEdited.setCollectionName(name);
+        if(collectionToBeEdited.getCollectionName().equalsIgnoreCase(name)) {
+            repository.save(collectionToBeEdited);
+            return true;
+        }
+        return false;
+    }
 }

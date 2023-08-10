@@ -51,4 +51,13 @@ public class CollectionController {
         }
         else return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
     }
+
+    @Transactional
+    @PutMapping("/api/collections/editCollection")
+    public ResponseEntity<Boolean> editCollection(@RequestBody CollectionRequest request) {
+        if(service.editCollectionById(request.id(), request.name())) {
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        }
+        else return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+    }
 }
