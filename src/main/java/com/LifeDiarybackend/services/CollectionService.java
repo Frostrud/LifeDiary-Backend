@@ -24,8 +24,9 @@ public class CollectionService {
                 repository.save(collection);
                 return "Collection added";
         } catch (Exception e) {
-            throw e;
+            System.out.println("Error, collection not added");
         }
+        return "Error, collection not added";
     }
 
     public Iterable<Collection> getUserCollections(long userID) {
@@ -47,5 +48,16 @@ public class CollectionService {
     @Transactional
     public Collection findCollectionById(long Id) {
        return repository.findCollectionById(Id);
+    }
+
+    @Transactional
+    public boolean deleteCollectionById(long Id) {
+        try {
+            repository.deleteById(Id);
+            return true;
+        } catch(Exception e) {
+            System.out.println("Error, collection with ID " + Id + " failed to delete");
+        }
+        return false;
     }
 }

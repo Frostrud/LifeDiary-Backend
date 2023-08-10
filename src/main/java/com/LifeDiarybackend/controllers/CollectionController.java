@@ -3,6 +3,7 @@ import com.LifeDiarybackend.models.Collection;
 import com.LifeDiarybackend.models.CollectionRequest;
 import com.LifeDiarybackend.services.CollectionService;
 import com.LifeDiarybackend.services.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +41,14 @@ public class CollectionController {
     @GetMapping("/api/collections/getSingleCollectionByCollectionID={collectionId}")
     public ResponseEntity<Collection> getCollectionByCollectionId(@PathVariable long collectionId) {
         return new ResponseEntity<Collection>(service.findCollectionById(collectionId), HttpStatus.OK);
+    }
+
+    @Transactional
+    @DeleteMapping("/api/collections/deleteCollection={collectionId}")
+    public ResponseEntity<Boolean> deleteCollectionById(@PathVariable long collectionId) {
+        if(service.deleteCollectionById(collectionId)) {
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        }
+        else return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
     }
 }

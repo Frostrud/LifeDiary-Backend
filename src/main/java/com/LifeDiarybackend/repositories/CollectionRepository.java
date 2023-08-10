@@ -10,4 +10,6 @@ public interface CollectionRepository extends CrudRepository<Collection, String>
   Iterable<Collection> findAll();
 
   Collection findCollectionById(long Id);
+
+  void deleteById(long Id);
 }
