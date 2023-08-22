@@ -12,7 +12,7 @@ Download the project to your chosen folder.
 
 Navigate to the project directory and run using Maven:
 
-### "mvn spring-boot:run"
+### `mvn spring-boot:run`
 
 Access the functionality using the Frontend project.
 
