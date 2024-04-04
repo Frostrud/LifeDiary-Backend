@@ -23,7 +23,20 @@ public class TextService {
      repository.save(newText);
      return true;
    } catch(Exception e) {
-     throw e;
+       System.out.println(e.getMessage());
+     return false;
     }
+  }
+
+  public boolean updateTextContent(Long textID, String newContent) {
+      try {
+        Text textToBeUpdated = repository.findTextById(textID);
+        textToBeUpdated.setContent(newContent);
+        repository.save(textToBeUpdated);
+        return true;
+      } catch(Exception e) {
+          System.out.println(e.getMessage());
+         return false;
+      }
   }
 }

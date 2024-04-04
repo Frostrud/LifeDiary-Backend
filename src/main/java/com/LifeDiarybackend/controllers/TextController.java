@@ -26,8 +26,16 @@ public class TextController {
 
   @PostMapping("/api/texts/add")
   public ResponseEntity<Boolean> addNewText(@RequestBody TextRequest request) {
-    if(service.addNewText(collectionService.findCollectionById(request.id()), request.name())) {
+    if(service.addNewText(collectionService.findCollectionById(request.id()), request.contentOrHeadline())) {
       return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+    }
+    return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+  }
+
+  @PutMapping("/api/texts/update")
+  public ResponseEntity<Boolean> updateText(@RequestBody TextRequest request) {
+    if(service.updateTextContent(request.id(), request.contentOrHeadline())) {
+      return new ResponseEntity<>(true, HttpStatus.OK);
     }
     return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
   }
