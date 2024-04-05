@@ -15,6 +15,7 @@ public class Text {
 
     private String headLine;
 
+    @Column(length = 10000)
     private String content;
 
     @JsonIgnore
