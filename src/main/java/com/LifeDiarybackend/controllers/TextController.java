@@ -20,7 +20,7 @@ public class TextController {
 
 
   @GetMapping("/api/texts/getSingleTextByTextID={textID}")
-  public ResponseEntity<Text> getCollectionByCollectionId(@PathVariable long textID) {
+  public ResponseEntity<Text> getTextByTextID(@PathVariable long textID) {
     return new ResponseEntity<Text>(service.findTextByTextID(textID), HttpStatus.OK);
   }
 

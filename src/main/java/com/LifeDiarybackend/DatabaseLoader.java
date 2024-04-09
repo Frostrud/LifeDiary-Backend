@@ -1,14 +1,22 @@
 package com.LifeDiarybackend;
 
 import com.LifeDiarybackend.models.Collection;
+import com.LifeDiarybackend.models.Image;
 import com.LifeDiarybackend.models.Text;
 import com.LifeDiarybackend.models.User;
 import com.LifeDiarybackend.repositories.CollectionRepository;
+import com.LifeDiarybackend.repositories.ImageRepository;
 import com.LifeDiarybackend.repositories.TextRepository;
 import com.LifeDiarybackend.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Component
 public class DatabaseLoader {
@@ -17,17 +25,23 @@ public class DatabaseLoader {
     private final CollectionRepository collectionRepository;
     private final TextRepository textRepository;
 
+    private final ImageRepository imageRepository;
+    private final ResourceLoader resourceLoader;
+
 
 
     @Autowired
-    public DatabaseLoader(UserRepository userRepository, CollectionRepository collectionRepository, TextRepository textRepository) {
+    public DatabaseLoader(UserRepository userRepository, CollectionRepository collectionRepository, TextRepository textRepository,
+                          ImageRepository imageRepository, ResourceLoader resourceLoader) {
         this.userRepository = userRepository;
         this.collectionRepository = collectionRepository;
         this.textRepository = textRepository;
+        this.imageRepository = imageRepository;
+        this.resourceLoader = resourceLoader;
     }
 
     @PostConstruct
-    private void loadData() {
+    private void loadData() throws IOException {
         User user = new User("Mr","Admin","Premium+","admin@test.com", "admin123");
         userRepository.save(user);
         Collection collection1 = new Collection(user, "Test Collection 1");
@@ -59,6 +73,13 @@ public class DatabaseLoader {
 
         collection1.addText(text1);
         
+        collectionRepository.save(collection1);
+
+        Resource imageResource = resourceLoader.getResource("classpath:static/kongen.jpg");
+        byte[] imageBytes = Files.readAllBytes(Paths.get(imageResource.getURI()));
+        Image testImage = new Image("Test Image", imageBytes, collection1);
+
+        collection1.addImage(testImage);
         collectionRepository.save(collection1);
     }
 }

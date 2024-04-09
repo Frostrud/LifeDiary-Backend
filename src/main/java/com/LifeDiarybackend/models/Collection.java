@@ -24,13 +24,17 @@ public class Collection {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Text> texts;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Image> images;
+
     public Collection() {
     }
 
     public Collection(User user, String name) {
         this.user = user;
-        this.texts = new HashSet<Text>();
         this.collectionName = name;
+        this.texts = new HashSet<Text>();
+        this.images = new HashSet<Image>();
     }
 
     public void setId(Long id) {
@@ -59,5 +63,13 @@ public class Collection {
 
     public User getUser() {
         return user;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void addImage(Image image) {
+        this.images.add(image);
     }
 }

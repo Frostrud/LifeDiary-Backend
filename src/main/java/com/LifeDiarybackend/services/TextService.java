@@ -18,13 +18,13 @@ public class TextService {
 
   public boolean addNewText(Collection collection, String textHeadline) {
    try {
-     Text newText = new Text(collection, textHeadline, "");
-     collection.addText(newText);
-     repository.save(newText);
-     return true;
+        Text newText = new Text(collection, textHeadline, "");
+        collection.addText(newText);
+        repository.save(newText);
+        return true;
    } catch(Exception e) {
        System.out.println(e.getMessage());
-     return false;
+         return false;
     }
   }
 
