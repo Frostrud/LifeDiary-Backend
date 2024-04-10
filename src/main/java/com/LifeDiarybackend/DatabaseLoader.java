@@ -75,7 +75,7 @@ public class DatabaseLoader {
 
         Resource imageResource = resourceLoader.getResource("classpath:static/kongen.jpg");
         byte[] imageBytes = Files.readAllBytes(Paths.get(imageResource.getURI()));
-        Image testImage = new Image("Test Image", imageBytes, collection1);
+        Image testImage = new Image("Kongen", imageBytes, collection1);
 
         collection1.addImage(testImage);
         collectionRepository.save(collection1);

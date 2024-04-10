@@ -1,6 +1,7 @@
 package com.LifeDiarybackend.controllers;
 import com.LifeDiarybackend.models.Collection;
 import com.LifeDiarybackend.models.CollectionRequest;
+import com.LifeDiarybackend.models.Image;
 import com.LifeDiarybackend.services.CollectionService;
 import com.LifeDiarybackend.services.UserService;
 import jakarta.transaction.Transactional;
@@ -40,7 +41,11 @@ public class CollectionController {
 
     @GetMapping("/api/collections/getSingleCollectionByCollectionID={collectionId}")
     public ResponseEntity<Collection> getCollectionByCollectionId(@PathVariable long collectionId) {
-        return new ResponseEntity<Collection>(service.findCollectionById(collectionId), HttpStatus.OK);
+        Collection collectionToBeReturned = service.findCollectionById(collectionId);
+        for(Image e: collectionToBeReturned.getImages()) {
+            e.encodeDataToBase64();
+        }
+        return new ResponseEntity<Collection>(collectionToBeReturned, HttpStatus.OK);
     }
 
     @Transactional

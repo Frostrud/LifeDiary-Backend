@@ -71,4 +71,8 @@ public class CollectionService {
         }
         return false;
     }
+
+    public void saveCollection(Collection collection) {
+        repository.save(collection);
+    }
 }
