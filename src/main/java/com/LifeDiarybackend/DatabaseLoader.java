@@ -72,8 +72,6 @@ public class DatabaseLoader {
                 "justo, ac ullamcorper neque  est et justo. Fusce pharetra urna et nisl vulputate, sed dignissim diam  bibendum. In dolor neque, efficitur vitae mi vitae, mattis consequat  dui.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}");
 
         collection1.addText(text1);
-        
-        collectionRepository.save(collection1);
 
         Resource imageResource = resourceLoader.getResource("classpath:static/kongen.jpg");
         byte[] imageBytes = Files.readAllBytes(Paths.get(imageResource.getURI()));

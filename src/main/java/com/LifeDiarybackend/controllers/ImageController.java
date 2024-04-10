@@ -16,7 +16,10 @@ public class ImageController {
 
     @GetMapping("/api/images/getSingleImageByID={imageID}")
     public ResponseEntity<Image> getImageByImageID(@PathVariable long imageID) {
-        return new ResponseEntity<Image>(service.findImageByImageID(imageID), HttpStatus.OK);
+        Image imageToBeReturned = service.findImageByImageID(imageID);
+        imageToBeReturned.encodeDataToBase64();
+
+        return new ResponseEntity<Image>(imageToBeReturned, HttpStatus.OK);
     }
 
 }

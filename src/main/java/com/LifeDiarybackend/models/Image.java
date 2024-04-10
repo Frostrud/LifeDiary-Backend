@@ -3,6 +3,8 @@ package com.LifeDiarybackend.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "images")
 public class Image {
@@ -13,8 +15,12 @@ public class Image {
 
     private String name;
 
+    @JsonIgnore
     @Lob
     private byte[] data;
+
+    @Column(length = 10000)
+    private String base64Data = "";
 
     @JsonIgnore
     @ManyToOne
@@ -51,5 +57,21 @@ public class Image {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getBase64Data() {
+        return base64Data;
+    }
+
+    public void setBase64Data(String base64Data) {
+        this.base64Data = base64Data;
+    }
+
+    public void encodeDataToBase64() {
+        this.base64Data = Base64.getEncoder().encodeToString(this.data);
+    }
+
+    public void emptyBase64() {
+        setBase64Data("");
     }
 }
